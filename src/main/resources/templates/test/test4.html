@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>타임리프 test</title>
+</head>
+<body>
+
+<div>
+	<h3>책 정보</h3>
+	<ul>
+		<li>책 번호 : [[${book.seq}]]</li>
+		<li>책 제목 : [[${book.title}]]</li>
+		<li>출판사 : [[${book.publisher}]]</li>
+		<li>저자 : [[${book.creator}]]</li>
+		<li>출판 연도 : [[${book.publishedYear}]]</li>
+	</ul>
+</div>
+
+</body>
+</html>

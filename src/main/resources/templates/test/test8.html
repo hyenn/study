@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+<h3>Validation Check</h3>
+<p>책 정보 입력</p>
+<form id="form" th:object="${book}">
+	<table>
+		<tr>
+			<td>책 제목</td>
+			<td>
+				<input type="text" th:field="*{title}" placeholder="책 제목을 입력하세요">
+			</td>
+			<td class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
+		</tr>
+		<tr>
+			<td>저자명</td>
+			<td>
+				<input type="text" th:field="*{creator}" placeholder="저자명을 입력하세요">
+			</td>
+			<td class="err" th:if="${#fields.hasErrors('creator')}" th:errors="*{creator}">Name Error</td>
+		</tr>
+		<tr>
+			<td>출판사</td>
+			<td>
+				<input type="text" th:field="*{publisher}" placeholder="출판사명을 입력하세요">
+			</td>
+			<td class="err" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">Name Error</td>
+		</tr>
+		<tr>
+			<td>출판연도</td>
+			<td>
+				<input type="text" th:field="*{publishedYear}">
+			</td>
+		</tr>
+	</table>
+	<button type="button" onclick="inputData2(this)">입력</button>
+</form>
+</div>
+
+<div id="list">
+<th:block th:if="${bookMap!=null}">
+<h3>책 목록</h3>
+<table border="1">
+	<tr>
+		<th>번호</th>
+		<th>제목</th>
+		<th>저자</th>
+		<th>출판사</th>
+		<th>출판연도</th>
+	</tr>
+	<tr th:each="entry:${bookMap}" th:with="book=${entry.value}">
+		<td th:text="${book.seq}"></td>
+		<td th:text="${book.title}"></td>
+		<td th:text="${book.creator}"></td>
+		<td th:text="${book.publisher}"></td>
+		<td th:text="${book.publishedYear}"></td>
+	</tr>
+</table>
+</th:block>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/book.js}"></script>
+
+</body>
+</html>
